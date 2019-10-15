@@ -1,4 +1,4 @@
-# Interactive marking tool for University of Alberta CMPUT 291 Assignment 2.
+# git remote add origin git@github.com:mrdaliri/cmput291-a2-marker.git.
 #
 # Developed by Mohammad-Reza Daliri (daliri@ualberta.ca).
 #
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
             print('----------------------------------')
 
-            print('a2-script.txt related contents:\n')
+            print('%s/a2-script.txt related contents:\n' % (submission.path,))
             with open('%s/a2-script.txt' % (submission.path,)) as cumulative_output_file:
                 cumulative_output = cumulative_output_file.read()
                 try:
