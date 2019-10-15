@@ -51,4 +51,4 @@ Following guide is available with `--help` argument:
 
 
 # Version
-Current version is **1.0.0**.
+Current version is **1.0.1**.
