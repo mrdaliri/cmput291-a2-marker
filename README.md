@@ -20,9 +20,13 @@ It is a python program which has some package dependencies. Required packages ar
 ```
 pip install -r requirements.txt
 ```
-Then run program with following arguments:
+Then run interactive marker with following arguments:
 ```
  python interactive_marker.py [-h] [--version] -q QUESTION -s SUBMISSIONS -m MARKSHEETS
+```
+To run mark merger tool, use following pattern:
+```
+ python marks_merger.py [-h] [--version] -m MARKSHEETS -o CSV
 ```
 
 ## Sample run
@@ -30,8 +34,12 @@ Then run program with following arguments:
  python interactive_marker.py -q 15 -s ~/submissions -m ~/marksheets
 ```
 
+```
+ python marks_merger.py -m ~/marksheetsMerged -o list.csv
+```
+
 # Options
-Following guide is available with `--help` argument:
+Following guides are available with `--help` argument:
 
     usage: interactive_marker.py [-h] [--version] -q QUESTION -s SUBMISSIONS -m MARKSHEETS
 
@@ -50,5 +58,20 @@ Following guide is available with `--help` argument:
                             Marksheets directory path.
 
 
+
+    usage: marks_merger.py [-h] [--version] -m MARKSHEETS -o CSV
+
+    Marks merging tool for University of Alberta CMPUT 201 Assignment 2. Developed
+    by Mohammad-Reza Daliri (daliri@ualberta.ca). IT COMES WITHOUT ANY WARRANTY
+    under GNU GPL-3.0 License.
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      --version             show program's version number and exit
+      -m MARKSHEETS, --marksheets MARKSHEETS
+                            Marksheets directory path.
+      -o CSV, --csv CSV     Output file name (CSV).
+
+
 # Version
-Current version is **1.0.1**.
+Current version is **1.0.2**.

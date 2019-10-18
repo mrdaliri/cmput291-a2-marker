@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import os
 import re
@@ -53,6 +53,12 @@ if __name__ == '__main__':
 
     with os.scandir(submissions_path) as submissions:
         for submission in submissions:
+            if not os.path.isdir(submission.path):
+                continue
+
+            print('_____________________________________________________')
+            clear()
+
             ccid = submission.name
 
             try:
@@ -85,14 +91,17 @@ if __name__ == '__main__':
 
             print('----------------------------------')
 
-            print('%s/a2-script.txt related contents:\n' % (submission.path,))
-            with open('%s/a2-script.txt' % (submission.path,)) as cumulative_output_file:
-                cumulative_output = cumulative_output_file.read()
-                try:
-                    output = re.search('([qQ](.*)%d)(.*)((?:\n.+)+)' % q_number, cumulative_output, re.MULTILINE).group()
-                    print(output.strip())
-                except AttributeError:  # if we cannot find question 5 answer
-                    print(cumulative_output.strip())
+            try:
+                print('%s/a2-script.txt related contents:\n' % (submission.path,))
+                with open('%s/a2-script.txt' % (submission.path,)) as cumulative_output_file:
+                    cumulative_output = cumulative_output_file.read()
+                    try:
+                        output = re.search('([qQ](.*)%d)(.*)((?:\n.+)+)' % q_number, cumulative_output, re.MULTILINE).group()
+                        print(output.strip())
+                    except AttributeError:  # if we cannot find question 5 answer
+                        print(cumulative_output.strip())
+            except FileNotFoundError:
+                pass
 
             print('----------------------------------')
 
@@ -107,6 +116,9 @@ if __name__ == '__main__':
                         points = int(re.compile('-?[0-9]+').search(line).group())
                         description = re.compile('[^(_]+').search(line).group(0).strip()
                         marking_items.append({'max': points, 'description': description, 'points': 0})
+
+            if not marking_items:  # we have already marked that student
+                continue
 
             total = 0
             while True:
@@ -170,4 +182,3 @@ if __name__ == '__main__':
             if not do_continue or not do_continue['continue']:
                 break
 
-            clear()
