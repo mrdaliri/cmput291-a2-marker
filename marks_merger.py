@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 
 import os
 import re
@@ -57,12 +57,14 @@ if __name__ == '__main__':
                         line = line.strip()
                         mark = float(re.compile(r'\d+\.?\d?/').search(line).group().replace('/', ''))
                         sum_of_marks += mark
-                    elif line.find('readme.txt is not submitted or is missing content') != -1 or line.find(
+                    elif line.lower().find('readme.txt is not submitted or is missing content') != -1 or line.find(
                             'Late penalty') != -1:
                         mark = float(re.compile(r'\d+\.?\d? ').search(line).group().strip())
                         sum_of_marks -= mark
 
             sum_of_marks = sum_of_marks if not sum_of_marks.is_integer() else int(sum_of_marks)
+            if sum_of_marks < 0:
+                sum_of_marks = 0
             csv_writer.writerow([ccid, sum_of_marks])
 
             with open(marksheet_file.path, 'w') as marksheet:

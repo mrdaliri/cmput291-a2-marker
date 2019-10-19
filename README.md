@@ -74,4 +74,4 @@ Following guides are available with `--help` argument:
 
 
 # Version
-Current version is **1.0.2**.
+Current version is **1.0.3**.
