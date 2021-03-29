@@ -1,5 +1,5 @@
 prompt-toolkit==1.0.14
-Pygments==2.4.2
+Pygments==2.7.4
 git+https://github.com/mrdaliri/PyInquirer@no-mouse
 regex==2019.8.19
 six==1.12.0
